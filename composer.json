@@ -1,0 +1,41 @@
+{
+    "name": "asialong/kwaixiaodian-sdk",
+    "description": "快手电商phpsdk",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "William Wang",
+            "email": "75025268@qq.com"
+        }
+    ],
+    "keywords": [
+        "快手电商",
+        "kwaixiaodian",
+        "快手电商sdk",
+        "kwaixiaodian-sdk",
+        "sdk"
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0",
+        "hanson/foundation-sdk": "4.0.2",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "php": ">=7.0",
+        "hanson/foundation-sdk": "4.0.2",
+        "ext-json": "*",
+        "phpunit/phpunit": "^8.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Asialong\\KwaixiaodianSdk\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Asialong\\KwaixiaodianSdk\\Tests\\": "tests/"
+        }
+    }
+}
