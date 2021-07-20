@@ -1,9 +1,9 @@
-# jinritemai-sdk
+# kwaixiaodian-sdk
 
 ## Install
 
 ```
-composer require asialong/jinritemai-sdk -vvv
+composer require asialong/kwaixiaodian-sdk -vvv
 ```
 
 # Usage
@@ -11,7 +11,7 @@ composer require asialong/jinritemai-sdk -vvv
 ```php
 <?php
 
-$dispatch = new \Asialong\KwaixiaodianSdk\Doudian([
+$dispatch = new \Asialong\KwaixiaodianSdk\Kwaixiaodian([
     'client_id' => 'your-app-key',
     'client_secret' => 'your-secret',
     'service_id' => 12345,
@@ -20,8 +20,8 @@ $dispatch = new \Asialong\KwaixiaodianSdk\Doudian([
     'member_type' => 'MERCHANT',
     'redirect_uri' => 'http://www.xxx.com/callback',
     'log' => [
-        'name' => 'doudian',
-        'file' => __DIR__ . '/doudian.log',
+        'name' => 'kwaixiaodian',
+        'file' => __DIR__ . '/kwaixiaodian.log',
         'level' => 'debug',
         'permission' => 0777,
     ],
