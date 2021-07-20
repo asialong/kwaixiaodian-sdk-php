@@ -6,7 +6,7 @@ use Hanson\Foundation\Foundation;
 
 class AccessToken extends AbstractAccessToken
 {
-    const TOKEN_API = 'https://openapi-sandbox.jinritemai.com/oauth2/access_token';
+    const TOKEN_API = 'https://open.kwaixiaodian.com/oauth2/access_token';
     protected $code;
     protected $serviceId;
     protected $isSelfUsed;
