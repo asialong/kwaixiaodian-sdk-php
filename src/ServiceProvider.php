@@ -20,9 +20,7 @@ class ServiceProvider implements ServiceProviderInterface
             return new AccessToken(
                 [
                     'client_id' =>  $pimple->getConfig('client_id'),
-                    'client_secret' =>  $pimple->getConfig('client_secret'),
-                    'service_id' =>  $pimple->getConfig('service_id'),
-                    'is_self_used' =>  $pimple->getConfig('is_self_used')
+                    'client_secret' =>  $pimple->getConfig('client_secret')
                 ],
                 new Http($pimple)
             );

@@ -21,7 +21,7 @@ class Api extends AbstractAPI
      * @param string $method 例如：’shop.brandList‘
      * @param array $params
      * @return mixed
-     * @throws JinritemaiSdkException
+     * @throws KwaixiaodianSdkException
      */
     public function request(string $method, array $source_params = [], string $sign_method = 'md5')
     {
@@ -88,12 +88,12 @@ class Api extends AbstractAPI
 
     /**
      * @param $result
-     * @throws JinritemaiSdkException
+     * @throws KwaixiaodianSdkException
      */
     private function checkErrorAndThrow($result)
     {
         if (!$result || $result['err_no'] != 0) {
-            throw new JinritemaiSdkException($result['message'], $result['err_no']);
+            throw new KwaixiaodianSdkException($result['message'], $result['err_no']);
         }
     }
 

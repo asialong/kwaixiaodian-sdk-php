@@ -29,8 +29,6 @@ class AccessToken extends AbstractAccessToken
     {
         $this->appId = $appParams['client_id'];
         $this->secret = $appParams['client_secret'];
-        $this->serviceId = $appParams['service_id'];
-        $this->isSelfUsed = $appParams['is_self_used'];
         $this->setHttp($http);
     }
 

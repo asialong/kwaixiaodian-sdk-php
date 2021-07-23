@@ -5,7 +5,7 @@ use Hanson\Foundation\Foundation;
 
 /**
  * Class Kwaixiaodian
- * @package Asialong\JinritemaiSdk
+ * @package Asialong\KwaixiaodianSdk
  *
  * @property \Asialong\KwaixiaodianSdk\Api           $api
  * @property \Asialong\KwaixiaodianSdk\Api           $auth_api
