@@ -3,7 +3,7 @@
 ## Install
 
 ```
-composer require asialong/kwaixiaodian-sdk -vvv
+composer require asialong/kwaixiaodian-sdk-php -vvv
 ```
 
 # Usage

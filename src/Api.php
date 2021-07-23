@@ -23,23 +23,20 @@ class Api extends AbstractAPI
      * @return mixed
      * @throws KwaixiaodianSdkException
      */
-    public function request(string $method, array $source_params = [], string $sign_method = 'md5')
+    public function request(string $method, array $source_params = [], string $sign_method = 'MD5')
     {
         $params['method'] = $method;
-        $params['app_key'] = $this->kwaixiaodian['oauth.access_token']->getClientId();
+        $params['appkey'] = $this->kwaixiaodian['oauth.access_token']->getClientId();
+        $params['version'] = '1';
         $paramJson = $this->paramsHandle($source_params);
-        $params['param_json'] = $paramJson == '[]' ? '{}' : $paramJson;
-        $params['timestamp'] = date("Y-m-d H:i:s",time());
-        $params['v'] = '2';
-        $params['sign'] = $this->signature($params,$sign_method);
+        $params['param'] = $paramJson == '[]' ? '{}' : $paramJson;
+        $params['timestamp'] = Util::msectime();
+        $params['signMethod'] = $sign_method;
         if ($this->needToken) {
-            if ($this->kwaixiaodian['oauth.access_token']->getIsSelfUsed()){
-                $params['access_token'] = $source_params['access_token'];
-            }else{
-                $params['access_token'] = $this->kwaixiaodian['oauth.access_token']->getToken();
-            }
+            $params['access_token'] = $source_params['access_token'];
         }
-        if ('HmacSHA256' == $sign_method) $params['sign_method'] = 'hmac-sha256';
+        $params['sign'] = $this->signature($params,$sign_method);
+
         $http = $this->getHttp();
         $url = $this->getMethodUrl($method);
         $response = call_user_func_array([$http, 'post'], [$url, $params]);
@@ -67,7 +64,7 @@ class Api extends AbstractAPI
      *
      * @return string
      */
-    public function signature(array $params,string $sign_method = 'md5')
+    public function signature(array $params,string $sign_method = 'MD5')
     {
         ksort($params);
         $paramsStr = '';
@@ -77,12 +74,10 @@ class Api extends AbstractAPI
             }
         });
 
-        if ('md5' == $sign_method){
+        if ('MD5' == $sign_method){
             return strtolower(md5(sprintf('%s%s%s', $this->kwaixiaodian['oauth.access_token']->getSecret(), $paramsStr, $this->kwaixiaodian['oauth.access_token']->getSecret())));
         }
-        if ('HmacSHA256' == $sign_method){
-            return strtolower(hash_hmac("sha256",sprintf('%s%s%s', $this->kwaixiaodian['oauth.access_token']->getSecret(), $paramsStr, $this->doudian['oauth.access_token']->getSecret()),$this->doudian['oauth.access_token']->getSecret()));
-        }
+
         return false;
     }
 
@@ -104,7 +99,6 @@ class Api extends AbstractAPI
      */
     protected function paramsHandle(array $params)
     {
-        if (isset($params['access_token'])) unset($params['access_token']);
         array_walk($params, function (&$item) {
             if (is_array($item)) {
                 $item = json_encode($item);
