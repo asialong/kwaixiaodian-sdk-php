@@ -75,7 +75,7 @@ class Api extends AbstractAPI
         });
 
         if ('MD5' == $sign_method){
-            return strtolower(md5(sprintf('%s%s%s', $this->kwaixiaodian['oauth.access_token']->getSecret(), $paramsStr, $this->kwaixiaodian['oauth.access_token']->getSecret())));
+            return strtolower(md5(sprintf('%s%s', $paramsStr, $this->kwaixiaodian['oauth.access_token']->getSecret())));
         }
 
         return false;
