@@ -14,7 +14,8 @@
         "kwaixiaodian",
         "快手电商sdk",
         "kwaixiaodian-sdk",
-        "sdk"
+        "sdk",
+        "kwaixiaodian-sdk-php"
     ],
     "minimum-stability": "dev",
     "require": {
