@@ -22,7 +22,7 @@ class AccessToken extends BaseAccessToken
      */
     public function token(array $params)
     {
-        $response = $this->getHttp()->json(self::TOKEN_API, $params);
+        $response = $this->getHttp()->get(self::TOKEN_API, $params);
 
         return json_decode(strval($response->getBody()), true);
     }

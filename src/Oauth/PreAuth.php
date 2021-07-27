@@ -68,8 +68,7 @@ class PreAuth
             'app_id'     => $this->accessToken()->getClientId(),
             'app_secret' => $this->accessToken()->getSecret(),
             'code'          => $code ?? $this->accessToken()->getRequest()->get('code'),
-            'grant_type'    => 'code',
-            'state'         => $state
+            'grant_type'    => 'code'
         ]);
 
     }
