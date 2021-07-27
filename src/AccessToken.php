@@ -45,7 +45,7 @@ class AccessToken extends AbstractAccessToken
         if (empty($this->code)) {
             throw new \Exception('code不能为空');
         }
-        $response = $this->getHttp()->json(self::TOKEN_API, [
+        $response = $this->getHttp()->get(self::TOKEN_API, [
             'app_id'     => $this->appId,
             'app_secret' => $this->secret,
             'grant_type'    => 'code',
@@ -64,7 +64,7 @@ class AccessToken extends AbstractAccessToken
     public function checkTokenResponse($result)
     {
         if (isset($result['err_no']) && (0 != $result['err_no'])) {
-            throw new JinritemaiSdkException($result['message'], $result['err_no']);
+            throw new KwaixiaodianSdkException($result['message'], $result['err_no']);
         }
 
         return true;
@@ -84,22 +84,6 @@ class AccessToken extends AbstractAccessToken
     public function getSecret()
     {
         return $this->secret;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getServiceId()
-    {
-        return $this->serviceId;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getIsSelfUsed()
-    {
-        return $this->isSelfUsed;
     }
 
     /**
