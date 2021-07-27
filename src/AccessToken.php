@@ -48,7 +48,7 @@ class AccessToken extends AbstractAccessToken
         $response = $this->getHttp()->json(self::TOKEN_API, [
             'app_id'     => $this->appId,
             'app_secret' => $this->secret,
-            'grant_type'    => 'authorization_code',
+            'grant_type'    => 'code',
             'code'          => $this->code,
         ]);
 

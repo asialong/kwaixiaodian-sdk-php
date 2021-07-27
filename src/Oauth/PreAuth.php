@@ -71,6 +71,7 @@ class PreAuth
             'grant_type'    => 'code',
             'state'         => $state
         ]);
+
     }
 
     /**
