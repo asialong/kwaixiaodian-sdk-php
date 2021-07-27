@@ -43,11 +43,14 @@ class PreAuth
      *
      * @return string
      */
-    public function authorizationUrl($state = null)
+    public function authorizationUrl($state = null,$scope)
     {
         return self::AUTHORIZE_API_ARR[strtoupper($this->app->getConfig('member_type'))].http_build_query([
+            'appId'     => $this->accessToken()->getClientId(),
+            'response_type' => 'code',
+            'scope' => $scope,
             'state'         => $state,
-            'redirect_uri'  => $this->accessToken()->getRedirectUri(),
+            'redirect_uri'  => $this->accessToken()->getRedirectUri()
         ]);
     }
 
@@ -65,8 +68,7 @@ class PreAuth
             'app_id'     => $this->accessToken()->getClientId(),
             'app_secret' => $this->accessToken()->getSecret(),
             'code'          => $code ?? $this->accessToken()->getRequest()->get('code'),
-            'grant_type'    => 'authorization_code',
-            'redirect_uri'  => $this->accessToken()->getRedirectUri(),
+            'grant_type'    => 'code',
             'state'         => $state
         ]);
     }
