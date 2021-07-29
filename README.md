@@ -14,6 +14,7 @@ composer require asialong/kwaixiaodian-sdk -vvv
 $dispatch = new \Asialong\KwaixiaodianSdk\Kwaixiaodian([
     'client_id' => 'your-app-key',
     'client_secret' => 'your-secret',
+    'sign_secret' => 'your-signSecret',
     'debug' => true,
     'member_type' => 'MERCHANT',
     'redirect_uri' => 'http://www.xxx.com/callback',
