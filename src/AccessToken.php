@@ -8,8 +8,7 @@ class AccessToken extends AbstractAccessToken
 {
     const TOKEN_API = 'https://open.kwaixiaodian.com/oauth2/access_token';
     protected $code;
-    protected $serviceId;
-    protected $isSelfUsed;
+    public $signSecret;
 
     /**
      * key of token in json.
@@ -29,6 +28,7 @@ class AccessToken extends AbstractAccessToken
     {
         $this->appId = $appParams['client_id'];
         $this->secret = $appParams['client_secret'];
+        $this->signSecret = $appParams['sign_secret'];
         $this->setHttp($http);
     }
 
@@ -84,6 +84,14 @@ class AccessToken extends AbstractAccessToken
     public function getSecret()
     {
         return $this->secret;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSignSecret()
+    {
+        return $this->signSecret;
     }
 
     /**
