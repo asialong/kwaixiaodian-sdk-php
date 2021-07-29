@@ -29,7 +29,7 @@ class Api extends AbstractAPI
         $params['appkey'] = $this->kwaixiaodian['oauth.access_token']->getClientId();
         $params['version'] = '1';
         $paramJson = $this->paramsHandle($source_params);
-        $params['param'] = $paramJson == '[]' ? '{}' : json_encode($paramJson);
+        $params['param'] = $paramJson == '[]' ? '{}' : $paramJson;
         $params['timestamp'] = Util::msectime();
         $params['signMethod'] = $sign_method;
         if ($this->needToken) {
