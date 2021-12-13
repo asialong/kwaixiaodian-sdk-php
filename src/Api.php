@@ -99,17 +99,7 @@ class Api extends AbstractAPI
      */
     protected function paramsHandle(array $params)
     {
-        array_walk($params, function (&$item) {
-            if (is_array($item)) {
-                $item = json_encode($item);
-            }
-            if (is_bool($item)) {
-                $item = ['false', 'true'][intval($item)];
-            }
-        });
-
         ksort($params);
-        $str = json_encode($params,320);
-        return $str;
+        return json_encode($params,320);
     }
 }
