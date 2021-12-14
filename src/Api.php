@@ -25,24 +25,31 @@ class Api extends AbstractAPI
      */
     public function request(string $method, array $source_params = [], string $sign_method = 'MD5')
     {
-        $params['method'] = $method;
-        $params['appkey'] = $this->kwaixiaodian['oauth.access_token']->getClientId();
-        $params['version'] = '1';
-        $paramJson = $this->paramsHandle($source_params);
-        $params['param'] = $paramJson == '[]' ? '{}' : $paramJson;
-        $params['timestamp'] = Util::msectime();
-        $params['signMethod'] = $sign_method;
-        if ($this->needToken) {
-            $params['access_token'] = $source_params['access_token'];
-        }
-        $params['sign'] = $this->signature($params,$sign_method);
+        try{
+            $params['method'] = $method;
+            $params['appkey'] = $this->kwaixiaodian['oauth.access_token']->getClientId();
+            $params['version'] = '1';
+            $paramJson = $this->paramsHandle($source_params);
+            $params['param'] = $paramJson == '[]' ? '{}' : $paramJson;
+            $params['timestamp'] = Util::msectime();
+            $params['signMethod'] = $sign_method;
+            if ($this->needToken) {
+                $params['access_token'] = $source_params['access_token'];
+            }
+            $params['sign'] = $this->signature($params,$sign_method);
 
-        $http = $this->getHttp();
-        $url = $this->getMethodUrl($method);
-        $response = call_user_func_array([$http, 'post'], [$url, $params]);
-        $result = json_decode(strval($response->getBody()), true);
-        //$this->checkErrorAndThrow($result);
-        return $result;
+            $http = $this->getHttp();
+            $url = $this->getMethodUrl($method);
+            $response = call_user_func_array([$http, 'post'], [$url, $params]);
+            $result = json_decode(strval($response->getBody()), true);
+            //$this->checkErrorAndThrow($result);
+            return $result;
+        }catch (\Exception $e){
+            return [
+                'result' => 0,
+                'error_msg' => '我方捕获的异常信息: ' . $e->getMessage()
+            ];
+        }
     }
 
     /**
