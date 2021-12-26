@@ -20,12 +20,11 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.0",
-        "hanson/foundation-sdk": "4.0.2",
+        "hanson/foundation-sdk": "^5.0.0",
         "ext-json": "*"
     },
     "require-dev": {
         "php": ">=7.0",
-        "hanson/foundation-sdk": "4.0.2",
         "ext-json": "*",
         "phpunit/phpunit": "8.5.13"
     },
