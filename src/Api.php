@@ -44,10 +44,18 @@ class Api extends AbstractAPI
             $result = json_decode(strval($response->getBody()), true);
             //$this->checkErrorAndThrow($result);
             return $result;
+        }catch (\GuzzleHttp\Exception\ClientException $e){
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+            return [
+                'result' => 0
+                ,'error_msg' => '接口请求异常'
+                ,'data' => json_decode($responseBodyAsString, true)
+            ];
         }catch (\Exception $e){
             return [
-                'result' => 0,
-                'error_msg' => '我方捕获的异常信息: ' . $e->getMessage()
+                'result' => 0
+                ,'error_msg' => '我方捕获的异常信息: ' . $e->getMessage()
             ];
         }
     }
