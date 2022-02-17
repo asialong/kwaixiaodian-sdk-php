@@ -56,6 +56,7 @@ class Api extends AbstractAPI
             return [
                 'result' => 0
                 ,'error_msg' => '我方捕获的异常信息: ' . $e->getMessage()
+                ,'data' => []
             ];
         }
     }
