@@ -20,7 +20,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.0",
-        "hanson/foundation-sdk": "^5.0.0",
+        "hanson/foundation-sdk": "4.0.2",
         "ext-json": "*"
     },
     "require-dev": {
