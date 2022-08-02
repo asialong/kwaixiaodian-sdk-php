@@ -5,7 +5,7 @@ use Hanson\Foundation\AbstractAPI;
 
 class Api extends AbstractAPI
 {
-    const URL = 'https://open.kwaixiaodian.com';
+    const URL = 'https://openapi.kwaixiaodian.com';
 
     protected $kwaixiaodian;
     protected $needToken;
